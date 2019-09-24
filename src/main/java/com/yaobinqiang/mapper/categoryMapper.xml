@@ -6,6 +6,9 @@
 	<insert id="add" parameterType="String">
 		insert into category (name)
 		values (#{name})
+		<selectKey resultType="int" keyProperty="id" order="AFTER">
+			select last_insert_id() as id
+		</selectKey>
 	</insert>
 	<delete id="deleteById" parameterType="int">
 		delete from category where

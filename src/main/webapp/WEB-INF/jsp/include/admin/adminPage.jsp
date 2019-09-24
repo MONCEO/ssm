@@ -26,17 +26,17 @@ $(function(){
 
 	<nav>
 		<ul class="pager">
-			<li>总记录数：${page.total}</li>
-			<li>总页数：${page.pageCount}</li>
+			<li>总记录数：${page.total}&nbsp</li>
+			<li>总页数：${page.pageCount}&nbsp</li>
+			<li>当前页：${page.sp}&nbsp</li>
 			<li><a
-				href="${pageContext.request.contextPath}${page.url}/1">首页</a></li>
+				href="${pageContext.request.contextPath}/${page.url}/1">首页</a></li>
 			<li><a
-				href="${pageContext.request.contextPath}${page.url}/${sp-1}">上一页</a></li>
-			<li><textarea class="form-control">${page.sp}</textarea></li>
+				href="${pageContext.request.contextPath}/${page.url}/${page.sp-1}">上一页</a></li>			
 			<li><a
-				href="${pageContext.request.contextPath}${page.url}/${sp+1}">下一页</a></li>
+				href="${pageContext.request.contextPath}/${page.url}/${page.sp+1}">下一页</a></li>
 			<li><a
-				href="${pageContext.request.contextPath}${page.url}/${page.pageCount}">末页</a></li>
+				href="${pageContext.request.contextPath}/${page.url}/${page.pageCount}">末页</a></li>
 		</ul>
 </div>
 

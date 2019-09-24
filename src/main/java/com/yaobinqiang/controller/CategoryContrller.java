@@ -23,56 +23,88 @@ import com.yaobinqiang.until.Page;
 public class CategoryContrller {
 	@Resource
 	private CategoryService categoryService;
+
 	@RequestMapping("/admin")
 	public String admin() {
-		
+
 		return "redirect:admin_category_list/1";
 	}
+
 	@RequestMapping("/admin_category_list/{currentPage}")
-	public String category_list(@PathVariable String currentPage,HttpServletRequest request) {
-	
-		int totals= categoryService.getTotals(Category.class);
-		String url="/admin_category_list";
-		Page<Category> page  =new Page<Category>(currentPage,totals);
-		List<Category> cs = categoryService.queryByPage(Category.class,page.getSp(), page.getPageSize());
+	public String category_list(@PathVariable String currentPage, HttpServletRequest request) {
+
+		int totals = categoryService.getTotals(Category.class);
+		String url = "admin_category_list";
+		Page<Category> page = new Page<Category>(currentPage, totals);
+		List<Category> cs = categoryService.queryByPage(Category.class, page.getSp(), page.getPageSize());
 		page.setList(cs);
 		page.setUrl(url);
 		request.setAttribute("page", page);
 		System.out.println(page);
 		return "/admin/listCategory";
 	}
-	@RequestMapping("admin_category_edit")
-	public String list_category_edit(String id,String currentPage,Map<String, Object>map) {
-		Category c=categoryService.queryById(Category.class, Integer.parseInt(id));
-		map.put("c", c);
-		map.put("currentPage",currentPage);
-		return "/admin/editCategory";
-	}
-	@RequestMapping("/admin_category_update")
-	public String  update(Category category,String oldName,String currentPage,MultipartFile[] file,HttpServletRequest request) throws IllegalStateException, IOException {
-		if(!category.getName().equals(oldName)) {
-			categoryService.update(category);
-		}	
+
+	@RequestMapping("/admin_category_add")
+	public String add(Category category, MultipartFile image, HttpServletRequest request)
+			throws IllegalStateException, IOException {
+		if (category.getName() != null && !category.getName().equals("")) {
+			categoryService.add(category);
 			String path = request.getServletContext().getRealPath(Constant.category_path);
-			if(file.length>0) {
-				for(MultipartFile f:file) {
-					if(f!=null) {
-						//文件类型
-						String contentType = f.getContentType();
-						//文件名称
-						String fileName = f.getOriginalFilename();
-						//文件大小
-						long size = f.getSize();
-						System.out.println("文件类型："+contentType);
-						System.out.println("文件名称："+fileName);
-						System.out.println("文件大小："+size);
-						if(!"".equals(fileName)) {
-							//上传文件
-							f.transferTo(new File(path,category.getId()+".jpg"));
-						}
-					}
+			if (image != null) {
+				// 文件类型
+				String contentType = image.getContentType();
+				// 文件名称
+				String imageName = image.getOriginalFilename();
+				// 文件大小
+				long size = image.getSize();
+				System.out.println("文件类型：" + contentType);
+				System.out.println("文件名称：" + imageName);
+				System.out.println("文件大小：" + size);
+				if (!"".equals(imageName) && !contentType.equals("jpg")) {
+					// 上传文件
+					image.transferTo(new File(path, category.getId() + ".jpg"));
 				}
 			}
-		return "/admin_category_list/{currentPage}";
+		}
+		return "forward:/admin_category_list/1";
+	}
+	@RequestMapping("/admin_category_delete")
+	public String deleteById(String id,String currentPage) {
+	
+		categoryService.deleteById(Category.class,Integer.parseInt(id));
+		
+		return"forward:/admin_category_list/"+ currentPage;
+	}
+	@RequestMapping("/admin_category_edit")
+	public String categoryEdit(String id, String currentPage, Map<String, Object> map) {
+		Category c = categoryService.queryById(Category.class, Integer.parseInt(id));
+		map.put("c", c);
+		map.put("currentPage", currentPage);
+		return "/admin/editCategory";
+	}
+
+	@RequestMapping("/admin_category_update")
+	public String update(Category category, String oldName, String currentPage, MultipartFile image,
+			HttpServletRequest request) throws IllegalStateException, IOException {
+		if (!category.getName().equals(oldName)) {
+			categoryService.update(category);
+		}
+		String path = request.getServletContext().getRealPath(Constant.category_path);
+		if (image != null) {
+			// 文件类型
+			String contentType = image.getContentType();
+			// 文件名称
+			String imageName = image.getOriginalFilename();
+			// 文件大小
+			long size = image.getSize();
+			System.out.println("文件类型：" + contentType);
+			System.out.println("文件名称：" + imageName);
+			System.out.println("文件大小：" + size);
+			if (!"".equals(imageName) && !contentType.equals("jpg")) {
+				// 上传文件
+				image.transferTo(new File(path, category.getId() + ".jpg"));
+			}
+		}
+		return "forward:/admin_category_list/" + currentPage;
 	}
 }

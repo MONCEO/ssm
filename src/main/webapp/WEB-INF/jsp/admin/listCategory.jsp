@@ -40,7 +40,7 @@
                 <th>属性管理</th>
                 <th>产品管理</th>
                 <th>编辑</th>
-                <th>删除${page.requestAddress}</th>
+                <th>删除</th>
             </tr>
             </thead>
             <tbody>
