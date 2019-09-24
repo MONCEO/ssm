@@ -26,10 +26,14 @@ public class CategoryContrller {
 
 	@RequestMapping("/admin")
 	public String admin() {
-
+		
 		return "redirect:admin_category_list/1";
 	}
-
+	@RequestMapping("/admin_category_list")
+	public String adminin() {
+		
+		return "redirect:admin_category_list/1";
+	}
 	@RequestMapping("/admin_category_list/{currentPage}")
 	public String category_list(@PathVariable String currentPage, HttpServletRequest request) {
 

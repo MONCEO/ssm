@@ -30,7 +30,7 @@
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${us}" var="u">
+			<c:forEach items="${page.list}" var="u">
 				<tr>
 					<td>${u.id}</td>
 					<td>${u.name}</td>
