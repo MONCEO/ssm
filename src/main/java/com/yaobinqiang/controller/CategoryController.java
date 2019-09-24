@@ -20,7 +20,7 @@ import com.yaobinqiang.until.Constant;
 import com.yaobinqiang.until.Page;
 
 @Controller
-public class CategoryContrller {
+public class CategoryController {
 	@Resource
 	private CategoryService categoryService;
 
@@ -32,7 +32,7 @@ public class CategoryContrller {
 	@RequestMapping("/admin_category_list")
 	public String adminin() {
 		
-		return "redirect:admin_category_list/1";
+		return "redirect:/admin_category_list/1";
 	}
 	@RequestMapping("/admin_category_list/{currentPage}")
 	public String category_list(@PathVariable String currentPage, HttpServletRequest request) {
@@ -40,8 +40,8 @@ public class CategoryContrller {
 		int totals = categoryService.getTotals(Category.class);
 		String url = "admin_category_list";
 		Page<Category> page = new Page<Category>(currentPage, totals);
-		List<Category> cs = categoryService.queryByPage(Category.class, page.getSp(), page.getPageSize());
-		page.setList(cs);
+		List<Category> list = categoryService.queryByPage(Category.class,page);
+		page.setList(list);
 		page.setUrl(url);
 		request.setAttribute("page", page);
 		System.out.println(page);
@@ -72,15 +72,15 @@ public class CategoryContrller {
 		}
 		return "forward:/admin_category_list/1";
 	}
-	@RequestMapping("/admin_category_delete")
-	public String deleteById(String id,String currentPage) {
+	@RequestMapping("/admin_category_delete/{id}/{currentPage}")
+	public String deleteById(@PathVariable String id,@PathVariable String currentPage) {
 	
 		categoryService.deleteById(Category.class,Integer.parseInt(id));
 		
 		return"forward:/admin_category_list/"+ currentPage;
 	}
-	@RequestMapping("/admin_category_edit")
-	public String categoryEdit(String id, String currentPage, Map<String, Object> map) {
+	@RequestMapping("/admin_category_edit/{id}/{currentPage}")
+	public String categoryEdit(@PathVariable String id, @PathVariable String currentPage, Map<String, Object> map) {
 		Category c = categoryService.queryById(Category.class, Integer.parseInt(id));
 		map.put("c", c);
 		map.put("currentPage", currentPage);

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Property">
+	<insert id="add" parameterType="String">
+		insert into Property (name)
+		values (#{name})
+	</insert>
+	<delete id="deleteById" parameterType="int">
+		delete from Property where
+		id = #{id}
+	</delete>
+	<update id="update" parameterType="Property">
+		update Property
+		<set>
+			<if test="Property.name!=null and categor.name!=''">
+				name=#{name}
+			</if>
+		</set>
+		where
+		<if test="Property.id!=0">
+			id=#{Property.id}
+		</if>
+	</update>
+	<select id="queryById" parameterType="int" resultType="Property">
+		select * from Property where id=#{id}
+	</select>
+	<select id="queryByPage" parameterType="map" resultType="Property">
+		select * from Property where cid =#{cid} limit #{currentPage},#{pageSize}
+	</select>
+	<select id="getTotals" resultType="int">
+		select count(*) from Property
+	</select>
+</mapper>

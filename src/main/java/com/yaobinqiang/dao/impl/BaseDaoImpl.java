@@ -1,6 +1,7 @@
 package com.yaobinqiang.dao.impl;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.yaobinqiang.dao.BaseDao;
+import com.yaobinqiang.until.Page;
 @Repository("baseDao")
 public class BaseDaoImpl<T> extends SqlSessionDaoSupport implements BaseDao<T> {
 
@@ -45,8 +47,15 @@ public class BaseDaoImpl<T> extends SqlSessionDaoSupport implements BaseDao<T> {
 	}
 
 	@Override
-	public List<T> queryByPage(Class<?> cls, Map<String, Integer> map) {
-		
+	public List<T> queryByPage(Class<?> cls, Page<T> page) {
+		Map<String, Integer> map =new HashMap<String, Integer>();
+		try {
+			map.put("cid", Integer.parseInt(page.getParam()));
+		} catch (Exception e) {
+			map.put("cid",1);
+		}
+		map.put("currentPage", (page.getSp()-1)*page.getPageSize());
+		map.put("pageSize", page.getPageSize());
 		return getSqlSession().selectList(cls.getSimpleName()+".queryByPage",map);
 	}
 	@Override

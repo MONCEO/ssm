@@ -25,7 +25,7 @@ public class UserContrller {
 		int total=userService.getTotals(User.class);
 		String url = "admin_user_list";
 		Page<User> page = new Page<>(currentPage,total);
-		List<User> list = userService.queryByPage(User.class, page.getSp(), page.getPageSize());
+		List<User> list = userService.queryByPage(User.class,page);
 		page.setList(list);
 		page.setUrl(url);
 		request.setAttribute("page", page);

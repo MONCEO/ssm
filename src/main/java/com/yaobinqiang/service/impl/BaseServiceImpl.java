@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.yaobinqiang.dao.impl.BaseDaoImpl;
 import com.yaobinqiang.service.BaseService;
+import com.yaobinqiang.until.Page;
 @Service("baseService")
 public class BaseServiceImpl<T> implements BaseService<T>{
 
@@ -42,12 +43,10 @@ public class BaseServiceImpl<T> implements BaseService<T>{
 	}
 
 	@Override
-	public List<T> queryByPage(Class<?> cls, int currentPage, int pageSize) {
-
-		Map<String , Integer> map =new HashMap<String, Integer>();
-		map.put("currentPage",(currentPage-1)*pageSize);
-		map.put("pageSize", pageSize);
-		return baseDao.queryByPage(cls, map);
+	public List<T> queryByPage(Class<?> cls, Page<T>page) {
+		
+		
+		return baseDao.queryByPage(cls, page);
 	}
 
 	@Override
