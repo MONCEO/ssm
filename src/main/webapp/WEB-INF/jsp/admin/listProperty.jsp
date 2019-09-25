@@ -26,8 +26,8 @@
 <div class="workingArea">
 
 	<ol class="breadcrumb">
-		<li><a href="admin_category_list">所有分类</a></li>
-		<li><a href="admin_property_list?cid=${c.id}">${c.name}</a></li>
+		<li><a href="${pageContext.request.contextPath}/admin_category_list/1">所有分类</a></li>
+		<li><a href="${pageContext.request.contextPath}/admin_property_list/${category.id}">${category.name}</a></li>
 		<li class="active">属性管理</li>
 	</ol>
 
@@ -45,15 +45,15 @@
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${ps}" var="p">
+			<c:forEach items="${page.list}" var="p">
 
 				<tr>
 					<td>${p.id}</td>
 					<td>${p.name}</td>
-					<td><a href="admin_property_edit?id=${p.id}"><span
+					<td><a href="${pageContext.request.contextPath}/admin_property_edit/${p.id}/${page.sp}"><span
 							class="glyphicon glyphicon-edit"></span></a></td>
 					<td><a deleteLink="true"
-						   href="admin_property_delete?id=${p.id}"><span
+						   href="${pageContext.request.contextPath}/admin_property_delete/${p.id}/${page.sp}"><span
 							class=" 	glyphicon glyphicon-trash"></span></a></td>
 
 				</tr>
@@ -69,7 +69,7 @@
 	<div class="panel panel-warning addDiv">
 		<div class="panel-heading">新增属性</div>
 		<div class="panel-body">
-			<form method="post" id="addForm" action="admin_property_add">
+			<form method="post" id="addForm" action="${pageContext.request.contextPath}/admin_property_add">
 				<table class="addTable">
 					<tr>
 						<td>属性名称</td>
@@ -78,7 +78,7 @@
 					</tr>
 					<tr class="submitTR">
 						<td colspan="2" align="center">
-							<input type="hidden" name="cid" value="${c.id}">
+							<input type="hidden" name="cid" value="${category.id}">
 							<button type="submit" class="btn btn-success">提 交</button>
 						</td>
 					</tr>

@@ -27,15 +27,10 @@ public class CategoryController {
 	@RequestMapping("/admin")
 	public String admin() {
 		
-		return "redirect:admin_category_list/1";
-	}
-	@RequestMapping("/admin_category_list")
-	public String adminin() {
-		
 		return "redirect:/admin_category_list/1";
 	}
 	@RequestMapping("/admin_category_list/{currentPage}")
-	public String category_list(@PathVariable String currentPage, HttpServletRequest request) {
+	public String category_list(@PathVariable String currentPage,HttpServletRequest request) {
 
 		int totals = categoryService.getTotals(Category.class);
 		String url = "admin_category_list";
@@ -73,14 +68,14 @@ public class CategoryController {
 		return "forward:/admin_category_list/1";
 	}
 	@RequestMapping("/admin_category_delete/{id}/{currentPage}")
-	public String deleteById(@PathVariable String id,@PathVariable String currentPage) {
+	public String deleteById( @PathVariable String id, @PathVariable String currentPage) {
 	
 		categoryService.deleteById(Category.class,Integer.parseInt(id));
 		
 		return"forward:/admin_category_list/"+ currentPage;
 	}
 	@RequestMapping("/admin_category_edit/{id}/{currentPage}")
-	public String categoryEdit(@PathVariable String id, @PathVariable String currentPage, Map<String, Object> map) {
+	public String categoryEdit(@PathVariable String id,@PathVariable String currentPage, Map<String, Object> map) {
 		Category c = categoryService.queryById(Category.class, Integer.parseInt(id));
 		map.put("c", c);
 		map.put("currentPage", currentPage);

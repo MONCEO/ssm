@@ -16,10 +16,6 @@ import com.yaobinqiang.until.Page;
 public class UserContrller {
 	@Resource
 	private UserService userService;
-	@RequestMapping("/admin_user_list")
-	public String admin_user() {
-		return "redirect:/admin_user_list/1";
-	}
 	@RequestMapping("/admin_user_list/{currentPage}")
 	public String list(@PathVariable String currentPage,HttpServletRequest request) {
 		int total=userService.getTotals(User.class);

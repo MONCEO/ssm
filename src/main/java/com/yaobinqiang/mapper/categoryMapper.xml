@@ -17,7 +17,7 @@
 	<update id="update" parameterType="Category">
 		update category
 		<set>
-			<if test="category.name!=null and categor.name!=''">
+			<if test="category.name!=null and category.name!=''">
 				name=#{name}
 			</if>
 		</set>
