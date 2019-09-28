@@ -47,7 +47,7 @@
 			<c:forEach items="${os}" var="o">
 				<tr>
 					<td>${o.id}</td>
-					<td>${o.statusDesc}</td>
+					<td>${o.status}</td>
 					<td>￥<fmt:formatNumber type="number" value="${o.total}" minFractionDigits="2"/></td>
 					<td align="center">${o.totalNumber}</td>
 					<td align="center">${o.user.name}</td>
@@ -73,14 +73,15 @@
 						<div  class="orderPageOrderItem">
 							<table width="800px" align="center" class="orderPageOrderItemTable">
 								<c:forEach items="${o.orderItems}" var="oi">
+								<c:forEach items="${oi.products}" var="pt">
 									<tr>
 										<td align="left">
-											<img width="40px" height="40px" src="img/productSingle/${oi.product.firstProductImage.id}.jpg">
+											<img width="40px" height="40px" src="${pageContext.request.contextPath}/img/productSingle/${pt.productImage}.jpg">
 										</td>
 
 										<td>
-											<a href="foreproduct?pid=${oi.product.id}">
-												<span>${oi.product.name}</span>
+											<a href="foreproduct?pid=${pt.id}">
+												<span>${pt.name}</span>
 											</a>
 										</td>
 										<td align="right">
@@ -89,11 +90,12 @@
 										</td>
 										<td align="right">
 
-											<span class="text-muted">单价：￥${oi.product.promotePrice}</span>
+											<span class="text-muted">单价：￥${pt.promotePrice}</span>
 										</td>
 
 									</tr>
 								</c:forEach>
+							</c:forEach>
 
 							</table>
 						</div>

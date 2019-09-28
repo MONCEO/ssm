@@ -79,11 +79,26 @@ public class Product {
 	public void setFirstProductImage(ProductImage firstProductImage) {
 		this.firstProductImage = firstProductImage;
 	}
+	
+	public int getProductImage() {
+		return productImage;
+	}
+	public void setProductImage(int productImage) {
+		this.productImage = productImage;
+	}
+	
+	public List<ProductImage> getProductsImage() {
+		return productsImage;
+	}
+	public void setProductsImage(List<ProductImage> productsImage) {
+		this.productsImage = productsImage;
+	}
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", subTitle=" + subTitle + ", orignalPrice=" + orignalPrice
 				+ ", promotePrice=" + promotePrice + ", stock=" + stock + ", cid=" + cid + ", createDate=" + createDate
-				+ ", category=" + category + ", firstProductImage=" + firstProductImage + "]";
+				+ ", category=" + category + ", productImage=" + productImage + ", firstProductImage="
+				+ firstProductImage + ", productsImage=" + productsImage + "]";
 	}
 
 	

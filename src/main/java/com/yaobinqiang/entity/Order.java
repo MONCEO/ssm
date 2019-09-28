@@ -21,7 +21,7 @@ public class Order {
 	private int total;
 	private int totalNumber;
 	private User user;
-	private List<OrderItem> orderItem;
+	private List<OrderItem> orderItems;
 	public int getId() {
 		return id;
 	}
@@ -121,11 +121,12 @@ public class Order {
 		this.user = user;
 	}
 	
-	public List<OrderItem> getOrderItem() {
-		return orderItem;
+	
+	public List<OrderItem> getOrderItems() {
+		return orderItems;
 	}
-	public void setOrderItem(List<OrderItem> orderItem) {
-		this.orderItem = orderItem;
+	public void setOrderItems(List<OrderItem> orderItems) {
+		this.orderItems = orderItems;
 	}
 	@Override
 	public String toString() {
@@ -133,7 +134,7 @@ public class Order {
 				+ ", receiver=" + receiver + ", mobile=" + mobile + ", userMessage=" + userMessage + ", createDate="
 				+ createDate + ", payDate=" + payDate + ", deliveryDate=" + deliveryDate + ", confirmDate="
 				+ confirmDate + ", uid=" + uid + ", status=" + status + ", total=" + total + ", totalNumber="
-				+ totalNumber + ", user=" + user + ", orderItem=" + orderItem + "]";
+				+ totalNumber + ", user=" + user + ", orderItems=" + orderItems + "]";
 	}
 	
 	

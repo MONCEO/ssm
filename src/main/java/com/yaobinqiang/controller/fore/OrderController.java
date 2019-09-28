@@ -1,4 +1,4 @@
-package com.yaobinqiang.controller;
+package com.yaobinqiang.controller.fore;
 
 import java.util.ArrayList;
 import java.util.List;
