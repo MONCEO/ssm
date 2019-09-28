@@ -1,10 +1,10 @@
-package com.yaobinqiang.dao;
+package com.yaobinqiang.service;
 
 import java.util.List;
 
 import com.yaobinqiang.entity.PropertyValue;
 
-public interface PropertyValueDao extends BaseDao<PropertyValue> {
+public interface PropertyValueService extends BaseService<PropertyValue> {
 
 	public List<PropertyValue> queryByPid(Class<?>cls,int pid);
 }

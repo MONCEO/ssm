@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Product">
+	<resultMap type="Product" id="productBean">
+		<id column="productId" property="id" />
+		<result column="productName" property="name" />
+		<result column="subTitle" property="subTitle" />
+		<result column="orignalPrice" property="orignalPrice" />
+		<result column="promotePrice" property="promotePrice" />
+		<result column="stock" property="stock" />
+		<result column="cid" property="cid" />
+		<result column="createDate" property="createDate" />
+
+		<!-- 多对一的关系 -->
+		<!-- property: 指的是属性名称, javaType：指的是属性的类型 -->
+		<association property="category" javaType="Category">
+			<id column="categoryId" property="id" />
+			<result column="categoryName" property="name" />
+		</association>
+	</resultMap>
+	<insert id="add" parameterType="Product">
+		insert into Product
+		(name,subTitle,orignalPrice,promotePrice,stock,cid,createDate) values
+		(#{name},#{subTitle},#{orignalPrice},#{promotePrice},#{stock},#{cid},now())
+	</insert>
+	<delete id="deleteById" parameterType="int">
+		delete from Product where
+		id = #{id}
+	</delete>
+	<update id="update" parameterType="Product">
+		update Product
+		<set>
+			<if test="name!=null and name!=''">
+				name=#{name},
+			</if>
+			subTitle=#{subTitle},
+			<if test="orignalPrice!=null and orignalPrice!=''">
+				orignalPrice=#{orignalPrice},
+			</if>
+			<if test="promotePrice!=null and promotePrice!=''">
+				promotePrice=#{promotePrice},
+			</if>
+			<if test="stock!=null and stock!=''">
+				stock=#{stock},
+			</if>
+			<if test="cid!=null and cid!=''">
+				cid=#{cid},
+			</if>
+			createDate= now(),
+		</set>
+		where
+		<if test="id!=0">
+			id=#{id}
+		</if>
+	</update>
+	<select id="queryById" parameterType="int"
+		resultMap="productBean">
+		select p.*,c.*,p.id productId,p.name
+		productName,c.id categoryId,c.name categoryName from Product
+		p,category c where p.cid=c.id and p.id=#{id}
+	</select>
+	<select id="queryByPage" parameterType="map"
+		resultMap="productBean">
+		SELECT c.*,p.*,c.id categoryId,c.name categoryName,p.id
+		productId,p.name productName FROM category c,product p where
+		c.id=p.cid
+		AND p.cid=#{cid} limit #{currentPage},#{pageSize};
+	</select>
+	<select id="getTotals" parameterType="int" resultType="int">
+		select
+		count(*) from Product where cid =#{cid}
+	</select>
+</mapper>

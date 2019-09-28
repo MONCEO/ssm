@@ -1,10 +1,9 @@
-package com.yaobinqiang.dao;
+package com.yaobinqiang.service;
 
 import java.util.List;
 
 import com.yaobinqiang.entity.OrderItem;
 
-public interface OrderItemDao extends BaseDao<OrderItem>{
-
+public interface OrderItemService extends BaseService<OrderItem>{
 	public List<OrderItem> queryByOid(Class<?>cls,int oid);
 }

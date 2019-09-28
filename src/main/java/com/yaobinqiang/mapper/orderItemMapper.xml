@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OrderItem">
+	<resultMap type="OrderItem" id="orderItemBean">
+	<id column="ooid" property="id"/>
+	<result column="opid" property="pid"/>
+	<result column="oid" property="oid"/>
+	<result column="uid" property="uid"/>
+	<result column="number" property="number"/>
+	<result column="total" property="total"/>
+	
+	<collection property="products" ofType="Product">
+		<id column="ptid" property="id" />
+		<result column="name" property="name" />
+		<result column="subTitle" property="subTitle" />
+		<result column="orignalPrice" property="orignalPrice" />
+		<result column="promotePrice" property="promotePrice" />
+		<result column="stock" property="stock" />
+		<result column="cid" property="cid" />
+		<result column="createDate" property="createDate" />
+		<result column="pimgid" property="productImage"/>
+	</collection>
+	</resultMap>
+
+	<select id="queryByOid" parameterType="int" resultMap="orderItemBean">
+		<!-- SELECT oi.*,oi.id ooid,oi.pid opid,pt.*,pt.id ptid,MAX(pimg.id) pimgid from  orderitem oi, product pt,productimage pimg 
+		where oi.oid=#{oid} and oi.pid =pt.id AND pt.id=pimg.pid AND pimg.type='type_single' -->
+		<!-- SELECT oi.*,oi.id ooid,pt.*,pt.id ptid from  product pt ,orderitem oi
+		WHERE  oi.oid=1 AND oi.pid =pt.id -->
+		SELECT p.*,p.id AS ptid,oi.*,oi.id AS ooid, pimg.id AS pimgid,p.promotePrice*oi.number  AS total
+		from product p,orderitem  oi,(SELECT pimg.pid pid,max(pimg.id) id from  product pt ,orderitem oi, productimage pimg WHERE  oi.oid=1 AND oi.pid =pt.id AND pimg.pid=pt.id AND  pimg.type='type_single' GROUP BY pt.id) pimg WHERE oi.oid=#{oid} AND oi.pid = p.id and p.id = pimg.pid;
+	
+	</select>
+</mapper>

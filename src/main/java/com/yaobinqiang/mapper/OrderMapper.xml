@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Order">
+	<resultMap type="Order" id="orderBean">
+		<id  column="oid" property="id"/>
+		<result column="orderCode" property="orderCode"/>
+		<result column="address" property="address"/>
+		<result column="post" property="post"/>
+		<result column="receiver" property="receiver"/>
+		<result column="mobile" property="mobile"/>
+		<result column="userMessage" property="userMessage"/>
+		<result column="createDate" property="createDate"/>
+		<result column="payDate" property="payDate"/>
+		<result column="deliveryDate" property="deliveryDate"/>
+		<result column="confirmDate" property="confirmDate"/>
+		<result column="uid" property="uid"/>
+		<result column="status" property="status"/>
+		<association property="user">
+			<id  column="usid" property="id"/>
+			<result column="username" property="username"/>
+			<result column="password" property="password"/>
+		</association>
+	</resultMap>
+	
+	<select id="queryByPage" parameterType="map" resultMap="orderBean" >
+	SELECT o.*,o.id oid,us.*,us.id usid  from order_ o,user us where o.uid = us.id limit #{currentPage},#{pageSize}; 
+	</select>
+	<select id="getTotals" resultType="int">
+		select count(*) from order_
+	</select>
+
+</mapper> 

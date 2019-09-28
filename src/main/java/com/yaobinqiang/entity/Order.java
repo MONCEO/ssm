@@ -1,6 +1,7 @@
 package com.yaobinqiang.entity;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Order {
 
@@ -17,6 +18,10 @@ public class Order {
 	private Date confirmDate;
 	private int uid;
 	private String status;
+	private int total;
+	private int totalNumber;
+	private User user;
+	private List<OrderItem> orderItem;
 	public int getId() {
 		return id;
 	}
@@ -95,12 +100,40 @@ public class Order {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	public int getTotalNumber() {
+		return totalNumber;
+	}
+	public void setTotalNumber(int totalNumber) {
+		this.totalNumber = totalNumber;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	public List<OrderItem> getOrderItem() {
+		return orderItem;
+	}
+	public void setOrderItem(List<OrderItem> orderItem) {
+		this.orderItem = orderItem;
+	}
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", orderCode=" + orderCode + ", address=" + address + ", post=" + post
 				+ ", receiver=" + receiver + ", mobile=" + mobile + ", userMessage=" + userMessage + ", createDate="
 				+ createDate + ", payDate=" + payDate + ", deliveryDate=" + deliveryDate + ", confirmDate="
-				+ confirmDate + ", uid=" + uid + ", status=" + status + "]";
+				+ confirmDate + ", uid=" + uid + ", status=" + status + ", total=" + total + ", totalNumber="
+				+ totalNumber + ", user=" + user + ", orderItem=" + orderItem + "]";
 	}
 	
 	

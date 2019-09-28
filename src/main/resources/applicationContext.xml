@@ -29,6 +29,10 @@
 			<property name="typeAliasesPackage" value="com.yaobinqiang.entity"/>
 			<!-- orm映射文件，指定包以及子包下的所有xml文件 -->
 			<property name="mapperLocations" value="classpath:com/yaobinqiang/mapper/**/*.xml"/>
+			<property name="configuration">
+				<bean class="org.apache.ibatis.session.Configuration">
+				</bean>
+			</property>
 		</bean>
 		<!-- 配置事务管理器 -->
 		<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

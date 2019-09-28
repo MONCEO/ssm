@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PropertyValue">
+	<resultMap type="PropertyValue" id="PropertyValueBean">
+		<id column="pvid" property="id" />
+		<result column="pid" property="pid" />
+		<result column="ptid" property="ptid" />
+		<result column="value" property="value" />
+		<collection property="listProperty" ofType="Property">
+			<id column="pvid" property="id" />
+			<result column="cid" property="cid" />
+			<result column="name" property="name" />
+		</collection>
+	</resultMap>
+
+
+	<!-- <update id="update" parameterType="propertyValue"> update propertyValue 
+		<set> <if test="propertyValue.name!=null and propertyValue.name!=''"> name=#{name} 
+		</if> </set> where <if test="propertyValue.id!=0"> id=#{propertyValue.id} 
+		</if> </update> -->
+
+	<select id="queryByPid" parameterType="int"
+		resultMap="PropertyValueBean">
+		SELECT pt.*,pv.id pvid,pv.*from property
+		pt, propertyvalue pv
+		where pv.ptid = pt.id and pv.pid = #{pid};
+	</select>
+	<select id="update" parameterType="PropertyValue">
+		update  propertyvalue 
+		<set>
+			<if test="value!=null and value!=''">
+				value=#{value}
+			</if>
+		</set>
+		where  id =#{id} and pid=#{pid}
+	</select>
+</mapper>

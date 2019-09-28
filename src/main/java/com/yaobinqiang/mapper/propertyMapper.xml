@@ -24,7 +24,10 @@
 		</if>
 	</update>
 	<select id="queryById" parameterType="int" resultType="Property">
-		select * from Property where id=#{id}
+		select * from Property where id=#{id}	
+	</select>
+	<select id="queryByCid" parameterType="int" resultType="Property">
+		select * from Property where cid=#{cid}	 order by id
 	</select>
 	<select id="queryByPage" parameterType="map" resultType="Property">
 		select * from Property where cid =#{cid} order by id limit #{currentPage},#{pageSize}

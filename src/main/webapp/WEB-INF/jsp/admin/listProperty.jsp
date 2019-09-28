@@ -27,7 +27,7 @@
 
 	<ol class="breadcrumb">
 		<li><a href="${pageContext.request.contextPath}/admin_category_list/1">所有分类</a></li>
-		<li><a href="${pageContext.request.contextPath}/admin_property_list/${category.id}">${category.name}</a></li>
+		<li><a href="${pageContext.request.contextPath}/admin_property_list/${category.id}/1">${category.name}</a></li>
 		<li class="active">属性管理</li>
 	</ol>
 

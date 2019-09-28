@@ -1,6 +1,7 @@
 package com.yaobinqiang.entity;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Product {
 
@@ -11,7 +12,12 @@ public class Product {
 	private float promotePrice;
 	private int stock;
 	private int cid;
-	private Date cereateDate;
+	private Date createDate;
+	private Category category;
+	private int productImage;
+	private ProductImage firstProductImage;
+	private List<ProductImage> productsImage;
+	
 	public int getId() {
 		return id;
 	}
@@ -54,17 +60,31 @@ public class Product {
 	public void setCid(int cid) {
 		this.cid = cid;
 	}
-	public Date getCereateDate() {
-		return cereateDate;
+	
+	public Date getCreateDate() {
+		return createDate;
 	}
-	public void setCereateDate(Date cereateDate) {
-		this.cereateDate = cereateDate;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	public ProductImage getFirstProductImage() {
+		return firstProductImage;
+	}
+	public void setFirstProductImage(ProductImage firstProductImage) {
+		this.firstProductImage = firstProductImage;
 	}
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", subTitle=" + subTitle + ", orignalPrice=" + orignalPrice
-				+ ", promotePrice=" + promotePrice + ", stock=" + stock + ", cid=" + cid + ", cereateDate="
-				+ cereateDate + "]";
+				+ ", promotePrice=" + promotePrice + ", stock=" + stock + ", cid=" + cid + ", createDate=" + createDate
+				+ ", category=" + category + ", firstProductImage=" + firstProductImage + "]";
 	}
+
 	
 }
