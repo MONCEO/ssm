@@ -29,6 +29,9 @@
 	<select id="queryById" parameterType="int" resultType="Category">
 		select * from category where id=#{id}
 	</select>
+	<select id="queryAll" resultType="Category">
+		select * from category 
+	</select> 
 	<select id="queryByPage" parameterType="map" resultType="Category">
 		select * from category limit #{currentPage},#{pageSize}
 	</select>

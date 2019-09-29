@@ -17,7 +17,10 @@ public class Product {
 	private int productImage;
 	private ProductImage firstProductImage;
 	private List<ProductImage> productsImage;
-	
+	//产品销量
+	private int saleCount ;
+	//评论数
+	private int reviewCount;
 	public int getId() {
 		return id;
 	}
@@ -60,7 +63,6 @@ public class Product {
 	public void setCid(int cid) {
 		this.cid = cid;
 	}
-	
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -73,33 +75,44 @@ public class Product {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	public ProductImage getFirstProductImage() {
-		return firstProductImage;
-	}
-	public void setFirstProductImage(ProductImage firstProductImage) {
-		this.firstProductImage = firstProductImage;
-	}
-	
 	public int getProductImage() {
 		return productImage;
 	}
 	public void setProductImage(int productImage) {
 		this.productImage = productImage;
 	}
-	
+	public ProductImage getFirstProductImage() {
+		return firstProductImage;
+	}
+	public void setFirstProductImage(ProductImage firstProductImage) {
+		this.firstProductImage = firstProductImage;
+	}
 	public List<ProductImage> getProductsImage() {
 		return productsImage;
 	}
 	public void setProductsImage(List<ProductImage> productsImage) {
 		this.productsImage = productsImage;
 	}
+
+	public int getSaleCount() {
+		return saleCount;
+	}
+	public void setSaleCount(int saleCount) {
+		this.saleCount = saleCount;
+	}
+	public int getReviewCount() {
+		return reviewCount;
+	}
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", subTitle=" + subTitle + ", orignalPrice=" + orignalPrice
 				+ ", promotePrice=" + promotePrice + ", stock=" + stock + ", cid=" + cid + ", createDate=" + createDate
 				+ ", category=" + category + ", productImage=" + productImage + ", firstProductImage="
-				+ firstProductImage + ", productsImage=" + productsImage + "]";
+				+ firstProductImage + ", productsImage=" + productsImage + ", saleCount=" + saleCount + ", reviewCount="
+				+ reviewCount + "]";
 	}
 
-	
 }

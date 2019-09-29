@@ -8,7 +8,7 @@ public class PropertyValue {
 	private int pid;
 	private int ptid;
 	private String value;
-	List<Property> listProperty;
+	List<Property> propertys;
 	public int getId() {
 		return id;
 	}
@@ -33,18 +33,15 @@ public class PropertyValue {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	public List<Property> getListProperty() {
-		return listProperty;
+	public List<Property> getPropertys() {
+		return propertys;
 	}
-	public void setListProperty(List<Property> listProperty) {
-		this.listProperty = listProperty;
+	public void setPropertys(List<Property> propertys) {
+		this.propertys = propertys;
 	}
 	@Override
 	public String toString() {
-		return "PropertyValue [id=" + id + ", pid=" + pid + ", ptid=" + ptid + ", value=" + value + ", listProperty="
-				+ listProperty + "]";
-	}
-	
-	
-	
+		return "PropertyValue [id=" + id + ", pid=" + pid + ", ptid=" + ptid + ", value=" + value + ", propertys="
+				+ propertys + "]";
+	}	
 }

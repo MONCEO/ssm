@@ -24,11 +24,11 @@
 				<div class="left-mark"></div>
 				<span class="categoryTitle">${c.name}</span>
 				<br>
-				<c:forEach items="${c.products}" var="p" varStatus="st">
-					<c:if test="${st.count<=5}">
+				<c:forEach items="${c.productsByRow}" var="p" varStatus="st">
+					<c:if test="${st.count<=5}"> 
 						<div class="productItem" >
-							<a href="foreproduct?pid=${p.id}"><img width="100px" src="img/productSingle_middle/${p.firstProductImage.id}.jpg"></a>
-							<a class="productItemDescLink" href="foreproduct?pid=${p.id}">
+							<a href="${pageContext.request.contextPath}/foreproduct?pid=${p.id}"><img width="100px" src="img/productSingle_middle/${p.productImage}.jpg"></a>
+							<a class="productItemDescLink" href="${pageContext.request.contextPath}/foreproduct?pid=${p.id}">
 								<span class="productItemDesc">[热销]
 								${fn:substring(p.name, 0, 20)}
 								</span>
@@ -37,7 +37,7 @@
 								<fmt:formatNumber type="number" value="${p.promotePrice}" minFractionDigits="2"/>
 							</span>
 						</div>
-					</c:if>				
+					</c:if>	
 				</c:forEach>
 				<div style="clear:both"></div>
 			</div>
@@ -45,6 +45,6 @@
 	</c:forEach>
 	
 	
-	<img id="endpng" class="endpng" src="img/site/end.png">
+	<img id="endpng" class="endpng" src="${pageContext.request.contextPath}/img/site/end.png">
 
 </div>

@@ -18,5 +18,5 @@ public class PropertyValueServiceImpl extends BaseServiceImpl<PropertyValue> imp
 		
 		return  propertyValueDao.queryByPid(cls, pid);
 	}
-
+	
 }

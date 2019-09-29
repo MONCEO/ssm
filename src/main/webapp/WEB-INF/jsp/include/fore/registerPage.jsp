@@ -43,7 +43,7 @@
 
 
 
-<form method="post" action="foreregister" class="registerForm">
+<form method="post" action="${pageContext.request.contextPath}/foreregister" class="registerForm">
 
 
 	<div class="registerDiv">

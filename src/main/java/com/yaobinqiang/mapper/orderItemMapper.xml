@@ -30,6 +30,9 @@
 		WHERE  oi.oid=1 AND oi.pid =pt.id -->
 		SELECT p.*,p.id AS ptid,oi.*,oi.id AS ooid, pimg.id AS pimgid,p.promotePrice*oi.number  AS total
 		from product p,orderitem  oi,(SELECT pimg.pid pid,max(pimg.id) id from  product pt ,orderitem oi, productimage pimg WHERE  oi.oid=1 AND oi.pid =pt.id AND pimg.pid=pt.id AND  pimg.type='type_single' GROUP BY pt.id) pimg WHERE oi.oid=#{oid} AND oi.pid = p.id and p.id = pimg.pid;
+	</select>
 	
+	<select id="getCount" parameterType="int" resultType="int">
+	SELECT * from order_ od,orderitem ot where ot.oid(+)=od.id AND od.payDate is NOT NULL AND ot.pid = #{pid} ;
 	</select>
 </mapper>

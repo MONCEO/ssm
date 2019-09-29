@@ -15,4 +15,5 @@ public class PropertyValueDaoImpl extends BaseDaoImpl<PropertyValue> implements 
 		return getSqlSession().selectList(cls.getSimpleName()+".queryByPid",pid);
 	}
 
+
 }

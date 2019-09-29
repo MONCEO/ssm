@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Review">
+	<resultMap type="Review" id="ReviewBean">
+		<id column="reid" property="id"/>
+		<result column="uid" property="uid"/>
+		<result column="pid" property="pid"/>
+		<result column="createdate" property="createdate"/>
+		<association property="user" javaType="User">
+			<id column="usid" property="id"/>
+			<result column="ame" property="name"/>
+			<result column="password" property="password"/>		
+		</association>
+	
+	</resultMap>
+	<select id="queryByPid" parameterType="int" resultMap="ReviewBean">
+		SELECT re.*,re.id as reid,us.*,us.id as usid from review re,`user`  us WHERE re.uid= us.id and re.pid=#{pid};
+	</select>
+	<select id="getTotals" parameterType="int" resultType="int">
+		SELECT COUNT(*) from review where pid=#{pid}
+	</select>
+	
+</mapper>

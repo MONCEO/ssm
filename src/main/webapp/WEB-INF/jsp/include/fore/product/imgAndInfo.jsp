@@ -142,9 +142,9 @@ $(function(){
 <div class="imgAndInfo">
  
     <div class="imgInimgAndInfo">
-        <img src="img/productSingle/${p.firstProductImage.id}.jpg" class="bigImg">
+        <img src="img/productSingle/${p.productImage}.jpg" class="bigImg">
         <div class="smallImageDiv">
-            <c:forEach items="${p.productSingleImages}" var="pi">
+            <c:forEach items="${productSingleImages}" var="pi">
                 <img src="img/productSingle_small/${pi.id}.jpg" bigImageURL="img/productSingle/${pi.id}.jpg" class="smallImage">
             </c:forEach>
         </div>
@@ -180,7 +180,7 @@ $(function(){
                     <span class="originalPriceDesc">价格</span>
                     <span class="originalPriceYuan">¥</span>
                     <span class="originalPrice">
-                        <fmt:formatNumber type="number" value="${p.originalPrice}" minFractionDigits="2"/>
+                        <fmt:formatNumber type="number" value="${p.orignalPrice}" minFractionDigits="2"/>
                     </span>
                 </div>
 

@@ -1,5 +1,7 @@
 package com.yaobinqiang.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.yaobinqiang.dao.ProductDao;
@@ -11,6 +13,12 @@ public class ProductDaoImpl extends BaseDaoImpl<Product> implements ProductDao {
 	public int getTotals(Class<?> cls,int cid) {
 		
 		return getSqlSession().selectOne(cls.getSimpleName()+".getTotals",cid);
+	}
+
+	@Override
+	public List<Product> queryByCid(Class<?> cls, int cid) {
+		
+		return getSqlSession().selectList(cls.getSimpleName()+".queryByCid",cid);
 	}
 
 }

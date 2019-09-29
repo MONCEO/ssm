@@ -15,4 +15,10 @@ public class OrderItemDaoImpl extends BaseDaoImpl<OrderItem> implements OrderIte
 		return getSqlSession().selectList(cls.getSimpleName()+".queryByOid",oid);
 	}
 
+	@Override
+	public int getCount(Class<?> cls, int pid) {
+	
+		return getSqlSession().selectOne(cls.getSimpleName()+".getCount",pid);
+	}
+
 }

@@ -18,5 +18,10 @@ public class OrderItemServiceImpl extends BaseServiceImpl<OrderItem> implements 
 	
 		return orderItemDao.queryByOid(cls,oid);
 	}
+	@Override
+	public int getCount(Class<?> cls, int pid) {
+		
+		return orderItemDao.getCount(cls, pid);
+	}
 
 }

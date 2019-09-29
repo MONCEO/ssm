@@ -61,6 +61,9 @@
 		productName,c.id categoryId,c.name categoryName from Product
 		p,category c where p.cid=c.id and p.id=#{id}
 	</select>
+	<select id="queryByCid" parameterType="int" resultType="product">
+		select * from product where cid=#{cid}
+	</select>
 	<select id="queryByPage" parameterType="map"
 		resultMap="productBean">
 		SELECT c.*,p.*,c.id categoryId,c.name categoryName,p.id
